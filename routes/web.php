@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hello');
 });
+Route::get('role',[
+    'middleware' => 'Role:editor',
+    'uses' => 'TestController@index',
+ ]);
+ Route::get('profile', [
+    'middleware' => 'auth',
+    'uses' => 'UserController@showProfile'
+ ]);
+ Route::get('/usercontroller/path',[
+    'middleware' => 'First',
+    'uses' => 'UserController@showPath'
+ ]);
+ 
+ 
